@@ -1,106 +1,69 @@
-# 🤖 Telegram AI-ассистент компании
+Telegram AI-ассистент — Центр Красок #1
 
-Бот отвечает на вопросы о компании используя Claude AI и файл `company_info.txt` как базу знаний.
+AI-бот для автоматической обработки входящих обращений клиентов через Telegram. Отвечает на вопросы о товарах, брендах, колеровке, доставке и контактах магазина.
 
-## Быстрый старт
+Стек
 
-### 1. Получите токены
 
-**Telegram Bot Token:**
-1. Откройте Telegram → найдите `@BotFather`
-2. Напишите `/newbot`
-3. Придумайте имя и username для бота
-4. Скопируйте полученный токен
 
-**Anthropic API Key:**
-1. Зайдите на [console.anthropic.com](https://console.anthropic.com)
-2. Создайте аккаунт / войдите
-3. Перейдите в API Keys → Create Key
-4. Скопируйте ключ
 
-### 2. Настройте окружение
 
-```bash
-# Клонируйте / скачайте файлы в папку
-cd telegram-bot
+Python 3.9+
 
-# Создайте .env файл
-cp .env.example .env
 
-# Откройте .env и вставьте свои токены
-nano .env   # или любой редактор
-```
 
-### 3. Заполните базу знаний
+aiogram 3 — Telegram Bot framework
 
-Откройте файл `company_info.txt` и замените шаблонные данные на реальную информацию о вашей компании.
 
-Можно добавить любую информацию:
-- Описание компании и услуг
-- Адреса и контакты
-- Цены и пакеты
-- Вакансии
-- FAQ
 
-### 4. Установите зависимости и запустите
+Anthropic Claude API — языковая модель
 
-```bash
-# Создайте виртуальное окружение (рекомендуется)
-python -m venv venv
-source venv/bin/activate   # Linux/Mac
-venv\Scripts\activate      # Windows
 
-# Установите зависимости
-pip install -r requirements.txt
 
-# Запустите бота
-python bot.py
-```
+python-dotenv — управление переменными окружения
 
-## Структура проекта
+Что умеет бот
 
-```
+
+
+
+
+Отвечает на вопросы о магазине на основе базы знаний
+
+
+
+Поддерживает контекст диалога (помнит историю переписки)
+
+
+
+Работает на русском и казахском языках
+
+
+
+Не придумывает информацию — отвечает только по базе знаний
+
+
+
+При отсутствии информации направляет к менеджеру
+
+Структура проекта
+
 telegram-bot/
-├── bot.py              # Основной код бота
-├── company_info.txt    # База знаний (заполните своими данными)
-├── requirements.txt    # Python зависимости
-├── .env.example        # Шаблон переменных окружения
-├── .env                # Ваши токены (создать самостоятельно)
-└── README.md           # Эта инструкция
-```
+├── bot.py              # Основная логика бота
+├── company_info.txt    # База знаний о компании
+├── requirements.txt    # Зависимости
+└── .env                # Токены (не хранится в репозитории)
 
-## Как работает бот
+Запуск
 
-1. Пользователь пишет вопрос в Telegram
-2. Бот передаёт вопрос + информацию из `company_info.txt` в Claude API
-3. Claude генерирует ответ на основе только этой информации
-4. Бот отвечает пользователю
+pip install -r requirements.txt
+python3 bot.py
 
-История диалога сохраняется в памяти (до 20 сообщений на пользователя), поэтому бот помнит контекст разговора.
+Переменные окружения
 
-## Запуск на сервере (Production)
+TELEGRAM_BOT_TOKEN=токен от @BotFather
+ANTHROPIC_API_KEY=ключ от console.anthropic.com
 
-```bash
-# Через systemd (Linux)
-sudo nano /etc/systemd/system/telegram-bot.service
-```
+Автор
 
-```ini
-[Unit]
-Description=Telegram Company Bot
-After=network.target
-
-[Service]
-WorkingDirectory=/path/to/telegram-bot
-EnvironmentFile=/path/to/telegram-bot/.env
-ExecStart=/path/to/venv/bin/python bot.py
-Restart=always
-
-[Install]
-WantedBy=multi-user.target
-```
-
-```bash
-sudo systemctl enable telegram-bot
-sudo systemctl start telegram-bot
-```
+Arnur Sabirov — стратег, оператор и системный строитель в сфере продаж, маркетинга и AI-автоматизации.
