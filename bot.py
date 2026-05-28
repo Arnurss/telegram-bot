@@ -6,8 +6,6 @@ Telegram AI-ассистент для ответов на вопросы о ко
 import asyncio
 import logging
 import os
-from dotenv import load_dotenv
-load_dotenv()
 from anthropic import Anthropic
 from aiogram import Bot, Dispatcher, types
 from aiogram.filters import CommandStart
